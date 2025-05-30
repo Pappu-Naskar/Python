@@ -1,47 +1,47 @@
 # Problem 1 : Timing Function Execution
 # Problem: Write a decorator that measures the time a function takes to execute.
 
-# import time
+import time
 
-# def timer(func):
-#     def wrapper(*args,**kwargs):
-#        start = time.time()
-#        result= func(*args,**kwargs)
-#        end = time.time()
-#        print(f"{func.__name__} ran in{end-start} time")
-#        return result
-#     return wrapper
+def timer(func):
+    def wrapper(*args,**kwargs):
+       start = time.time()
+       result= func(*args,**kwargs)
+       end = time.time()
+       print(f"{func.__name__} ran in{end-start} time")
+       return result
+    return wrapper
 
 
-# @timer
-# def example_function(n):
-#     time.sleep(n)
+@timer
+def example_function(n):
+    time.sleep(n)
 
-# example_function(2)
+example_function(2)
 
 
 # 2.Debugging Function Calls
 # Problem: Create a decorator to print the function name and the values of its arguments every time the function is called.
 
-# def debug(func):
-#     def wrapper(*args,**kwargs):
-#         args_value = ', '.join(str(arg)for arg in args)
-#         kwargs_value = ', '.join(f"{k} ={v}" for k, v in kwargs.items())
-#         print(f'calling:{func.__name__} with args{args_value} and kwargs{kwargs_value}')
-#         return func(*args,**kwargs)
+def debug(func):
+    def wrapper(*args,**kwargs):
+        args_value = ', '.join(str(arg)for arg in args)
+        kwargs_value = ', '.join(f"{k} ={v}" for k, v in kwargs.items())
+        print(f'calling:{func.__name__} with args{args_value} and kwargs{kwargs_value}')
+        return func(*args,**kwargs)
         
-#     return wrapper
+    return wrapper
 
-# @debug
-# def Hello():
-#     print("hello")
+@debug
+def Hello():
+    print("hello")
 
-# @debug
-# def greet(name,greeting="hello"):
-#     print(f"{greeting}, {name}")
+@debug
+def greet(name,greeting="hello"):
+    print(f"{greeting}, {name}")
 
-# Hello()
-# greet("chai",greeting="hanji ")
+Hello()
+greet("chai",greeting="hanji ")
 
 
 # 3. Cache Return Values
